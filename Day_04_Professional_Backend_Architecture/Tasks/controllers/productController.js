@@ -21,10 +21,10 @@ exports.getProductById = (req, res) => {
   const product = products.find((p) => p.id === id);
 
   if (!product) {
-    res.send("Product not found!");
+    return res.status(404).send("Product not found!");
   }
 
-  res.send(product);
+  res.status(200).send(product);
 };
 
 exports.removeProductById = (req, res) => {
@@ -32,5 +32,7 @@ exports.removeProductById = (req, res) => {
 
   products = products.filter((p) => p.id !== id);
 
-  res.send(`Product ${id} removed!`);
+  res.status(200).send({
+    message: `Product ${id} removed!`,
+  });
 };
