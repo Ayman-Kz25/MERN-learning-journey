@@ -1,9 +1,13 @@
 const Product = require("../models/productModel")
 
 exports.getProducts = async (req, res) => {
-    const products = await Product.find();
+    try {
+        const products = await Product.find();
+        res.send(products);
+    } catch (error) {
+        res.status(404).send("server error");
+    }
 
-    res.send(products);
 }
 
 exports.addProducts = async (req, res) => {
@@ -30,5 +34,7 @@ exports.getProductById = async (req, res) => {
 exports.removeProductById = async (req, res) => {
     await Product.findByIdAndDelete(req.params.id);
 
-    res.send("Product removed!");
+    res.status(200).send({
+        message: "Product removed successfully!"
+    });
 };
