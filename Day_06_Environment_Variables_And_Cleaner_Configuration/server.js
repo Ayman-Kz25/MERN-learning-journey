@@ -10,10 +10,12 @@ app.use(express.json());
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB Connected!"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("MongoDB Connection Error: ",err));
 
 app.use("/products", productRoute);
 
-app.listen(process.env.PORT, () => {
-  console.log(`server running on port ${process.env.PORT}`);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
 });
