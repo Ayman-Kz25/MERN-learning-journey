@@ -1,11 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const logger = require("./middlewares/logger");
 
 const productRoute = require("./routes/productRoute");
 
 const app = express();
 app.use(express.json());
+app.use(logger);
 
 mongoose
   .connect(process.env.MONGODB_URI)
