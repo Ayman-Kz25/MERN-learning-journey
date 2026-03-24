@@ -1,6 +1,9 @@
 const validateProduct = (req, res, next) => {
-    if(!req.body.name || !req.body.price){
-        return res.status(400).send("Name and Price required!");
+    console.log(req.body);
+    if(!req.body.name || req.body.price===undefined){
+        return res.status(400).send({
+            message: "Name and Price required!"
+        });
     }
     next();
 };

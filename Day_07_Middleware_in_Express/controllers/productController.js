@@ -32,6 +32,7 @@ exports.getProductById = async (req, res) => {
     }
 
     res.send(product);
+    
   } catch (error) {
     res.status(500).send("Server Error!");
   }
